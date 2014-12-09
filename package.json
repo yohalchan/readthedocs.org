@@ -1,0 +1,18 @@
+{
+    "name": "readthedocs",
+    "version": "0.0.1",
+    "description": "Read the Docs build dependencies",
+    "author": "Anthony Johnson <anthony@readthedocs.org>",
+    "main": "media/js/main.js",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "less": "*",
+        "browserify": "*",
+        "jquery": ">2.1.0",
+        "jquery-ui": "*"
+    },
+    "private": true,
+    "license": "MIT"
+}
+

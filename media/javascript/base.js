@@ -1,3 +1,8 @@
+// Read the Docs
+var $ = window.$ || require('jquery'),
+    jqueryui = require('jquery-ui'),
+    ga = require('./ga');
+
 $(function() {
   $('body')
     .on('click', '.dropdown > span > a:last-child', open_dropdown)
@@ -127,3 +132,5 @@ $(function() {
     });
   })();
 })
+
+window.$ = window.jQuery = $;

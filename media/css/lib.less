@@ -1,0 +1,255 @@
+// Common mixins
+
+// Palette
+@col-light: #fcfcfc;
+@col-mid: #f5f2e9;
+@col-dark: #343131;
+@col-fg: @col-light;
+@col-bg: @col-dark;
+@col-pri-accent: #2980b9;
+@col-sec-accent: #f05330;
+@col-green: #a9e6ae;
+
+// Block of color mixins
+.themed (@background, @foreground, @link) {
+    font-family: Puritan;
+    font-size: 1em;
+    background: @background;
+    color: @foreground;
+
+    a {
+        text-decoration: none;
+
+        &:link, &:visited { color: @link; }
+        &:hover, &:active { color: mix(@background, @link, 40%); }
+    }
+}
+.themed_blue {
+    .themed(@col-pri-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_primary {
+    .themed(@col-pri-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_green {
+    @col-green-dark: darken(@col-green, 60%);
+    .themed(@col-green, @col-green-dark, @col-green-dark);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_secondary {
+    .themed(@col-sec-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_lightest {
+    .themed(#fff, @col-dark, @col-pri-accent);
+}
+.themed_light {
+    .themed(@col-light, @col-dark, @col-pri-accent);
+}
+.themed_dark {
+    .themed(@col-mid, @col-dark, lighten(@col-pri-accent, 10%));
+}
+.themed_darker {
+    .themed(darken(@col-light, 5%), @col-dark, lighten(@col-pri-accent, 10%));
+}
+.themed_darkest {
+    .themed(darken(@col-light, 15%), @col-dark, lighten(@col-pri-accent, 10%));
+}
+
+// Flat buttons
+/* Raise flat button, for obvious clickable elements */
+.flat_button_raised (@color: @col-pri-accent, @font: @col-fg) {
+    position: relative;
+    padding: .33em 1em;
+    border: none;
+    top: (-.33em / 2);
+    font-family: Puritan;
+    font-size: 1.1em;
+
+    background: @color;
+    color: @font;
+    text-shadow: -1px 1px darken(@color, 10%);
+    cursor: pointer;
+
+    /* Raised button stuff */
+    transition: all 0s ease-out;
+    -webkit-transition: all 0s ease-out;
+    -moz-transition: all 0s ease-out;
+    -o-transition: all 0s ease-out;
+    -ms-transition: all 0s ease-out;
+    border-radius: .2em;
+    -moz-border-radius: .2em;
+    box-shadow: 0px .2em 0px 0px darken(@color, 10%);
+    -webkit-box-shadow: 0px .2em 0px 0px darken(@color, 10%);
+
+    &:active {
+        top: (-.33em / 2) + .15em;
+        -webkit-box-shadow: 0px .05em 0px 0px darken(@color, 10%);
+        box-shadow: 0px .05em 0px 0px darken(@color, 10%);
+        outline: none;
+    }
+
+    &:hover {
+        background: lighten(@color, 10%);
+    }
+}
+
+/* Flat buttons for lesser actions and menu actions */
+.flat_button (@color: @col-dark, @font: @col-fg) {
+    padding: .33em 1em;
+    border: none;
+    top: 0em;
+    font-size: 1.2em;
+
+    background: @color;
+    color: @font;
+    text-shadow: -1px 1px darken(@color, 30%);
+    cursor: pointer;
+
+    border-radius: .2em;
+    -moz-border-radius: .2em;
+    -webkit-border-radius: .2em;
+
+    box-shadow: none;
+    -webkit-box-shadow:: none;
+
+    &:hover, &:active {
+        top: 0em;
+        background: mix(@color, @font, 30%);
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+/* Form styling */
+.flat_form (@background: @col-dark, @foreground: @col-light, @width: 20em) {
+    input[type="text"],
+    input[type="url"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+        padding: .45em;
+        width: 20em;
+        border: none;
+        margin-top: (.333333em / 2);
+        background: @background;
+        color: @foreground;
+        border: 1px solid mix(@background, @foreground, 80%);
+        font-family: Puritan, sans-serif;
+        font-size: 1em;
+
+        border-radius: .2em;
+        -moz-border-radius: .2em;
+        -webkit-border-radius: .2em;
+
+        &:focus {
+            border: 1px solid @col-sec-accent;
+            box-shadow: inset 2px 2px darken(@background, 10%);
+            outline: none;
+        }
+    }
+
+    label {
+        display: block;
+        margin: .1em .3em .1em 0em;
+        font-size: 1em;
+    }
+
+    span.helptext {
+        display: block;
+        margin: .3em 0em;
+        font-style: italic;
+        font-size: .9em;
+        color: lighten(@foreground, 20%);
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+    }
+    input[type="radio"] + label {
+        display: inline;
+    }
+
+    input[type="checkbox"] {
+        float: left;
+        display: block;
+        height: 1.2em;
+        margin: .3em .5em;
+        width: 1.2em;
+        line-height: 1.5em;
+
+        + span.helptext {
+            display: block;
+            overflow: hidden;
+            margin: 0em;
+            font-style: normal;
+            color: @foreground;
+        }
+    }
+
+    input[type="number"] {
+        width: 5em;
+    }
+
+    input[type="text"].search {
+        padding-left: 2em;
+        background-repeat: no-repeat;
+        background-position: .25em center;
+        background-size: 24px 24px;
+    }
+
+    input[type="text"].search {
+        background-image: url('../images/icon-search.png');
+    }
+
+    input[type="submit"],
+    button {
+        .flat_button_raised();
+        margin: 1em 0em;
+    }
+
+    textarea {
+        width: 40em;
+        height: 10em;
+    }
+
+    .errorlist {
+        color: orangered;
+    }
+
+    > p {
+        display: block;
+        margin: .65em 0em;
+        clear: both;
+    }
+
+    > p + p {
+        margin-top: 1em;
+    }
+
+    input::-webkit-input-placeholder {
+        color: mix(@background, @foreground, 80%);
+    }
+    input:-moz-placeholder {
+        color: mix(@background, @foreground, 80%);
+        opacity:  1;
+    }
+    input::-moz-placeholder {
+        color: mix(@background, @foreground, 80%);
+        opacity:  1;
+    }
+    input:-ms-input-placeholder {
+        color: mix(@background, @foreground, 80%);
+    }
+}

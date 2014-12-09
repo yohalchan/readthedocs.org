@@ -174,6 +174,7 @@ INSTALLED_APPS = [
     'django_gravatar',
     'rest_framework',
     'corsheaders',
+    'compressor',
 
     # Celery bits
     'djcelery',
@@ -181,8 +182,6 @@ INSTALLED_APPS = [
     # daniellindsleyrocksdahouse
     'haystack',
     'tastypie',
-
-
 
     # our apps
     'bookmarks',
@@ -263,6 +262,23 @@ if LOG_DEBUG:
 # Guardian Settings
 GUARDIAN_RAISE_403 = True
 ANONYMOUS_USER_ID = -1
+
+# Compressor
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = MEDIA_ROOT
+COMPRESS_PRECOMPILERS = (
+    ('text/less', '/usr/bin/env lessc {infile} {outfile}'),
+    ('text/javascript', '/usr/bin/env browserify {infile} -o {outfile}'),
+)
+
+try:
+    STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
+except NameError:
+    STATICFILES_FINDERS = (
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'compressor.finders.CompressorFinder'
+    )
 
 # RTD Settings
 REPO_LOCK_SECONDS = 30

@@ -1,0 +1,39 @@
+{% load i18n %}
+
+<!-- BEGIN footer-->
+<div id='footer'>
+  <div class="row">
+    <ul class="fill">
+      <li><a href="http://blog.readthedocs.com">{% trans "Blog" %}</a></li>
+    </ul>
+  </div>
+  <div class='row'>
+    <div class='fill'>
+      {% get_current_language as current_lang %}
+      <form action="/i18n/setlang/" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="/" />
+        {% csrf_token %}
+        <select name="language">
+          {% for lang in LANGUAGES %}
+            {% if lang.0 == current_lang %}
+            <option selected="selected" value="{{ lang.0 }}">{{ lang.0|language_name_local }} [{{ lang.1 }}]</option>
+            {% else %}
+            <option value="{{ lang.0 }}">{{ lang.0|language_name_local }} [{{ lang.1 }}]</option>
+            {% endif %}
+            }
+          {% endfor %}
+        </select>
+        <input type="submit" name="submit" value="Change language" />
+      </form>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='fill'>
+      <span>&copy;&nbsp;Read&nbsp;the&nbsp;Docs,&nbsp;Inc.</span>
+      <span>{% trans 'Brought&nbsp;to&nbsp;you&nbsp;with&nbsp;the&nbsp;help&nbsp;of&nbsp;<a href="https://github.com/rtfd/readthedocs.org/graphs/contributors">many&nbsp;fine&nbsp;folks</a>.' %}</span>
+      <span>{% trans 'Funded&nbsp;by&nbsp;<a href="https://www.gittip.com/readthedocs/">readers&nbsp;like&nbsp;you</a>.' %}</span>
+      <span style="color: #CF4E77;">❤</span>
+    </div>
+  </div>
+</div>
+<!-- END footer-->

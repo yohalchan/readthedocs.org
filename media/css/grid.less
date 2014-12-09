@@ -1,0 +1,157 @@
+body {
+    width: 100%;
+    .clearfix();
+
+    @media (max-width: 640px), (max-device-width: 640px) {
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+    }
+}
+
+.grid (@columns: 12; @totalwidth: 100%) {
+    overflow: hidden;
+
+    .column(@width:1; @offset:0; @columns-p:@columns) {
+        @unit: @totalwidth / @columns-p;
+        @gutter: @unit * .2;
+        @block: @unit * .8;
+        display: inline;
+        float: left;
+        width: (@width * @unit) - @gutter;
+        margin-left: (@gutter * .5) + (@offset * @unit);
+        margin-right: (@gutter * .5);
+        .clearfix();
+    }
+
+    .block(@width:1; @offset:0) {
+        @unit: @totalwidth / @columns;
+        @gutter: @unit * .2;
+        @block: @unit * .8;
+        display: block;
+        width: (@width * @unit);
+        margin-left: (@offset * @unit);
+        .clearfix();
+    }
+}
+
+// Fluid grid
+.fluid_grid () {
+    .grid(11);
+
+    .row {
+        .block(9, 1);
+        overflow: hidden;
+
+        .col.fill { .column(9, 0, 9); }
+        .col.bisect { .column(4.5, 0, 9); }
+        .col.trisect { .column(3, 0, 9); }
+        .col.major { .column(6, 0, 9); }
+        .col.minor { .column(3, 0, 9); }
+    }
+
+    @media (max-width: 1000px) {
+        .grid(9);
+        .row { .block(9); }
+    }
+
+    @media (max-width: 640px), (max-device-width: 640px) {
+        .grid(1);
+        .row {
+            .block(1);
+            .col.fill { .column(1); }
+            .col.bisect { .column(1); }
+            .col.trisect { .column(1); }
+            .col.major { .column(1); }
+            .col.minor { .column(1); }
+        }
+    }
+}
+
+// Responsive block, full width. Alternative to grid with columns
+.fluid_block (@columns: 11) {
+    @unit: 100% / @columns;
+    @gutter: @unit * 2 / 10;
+    @block: @unit * 8 / 10;
+
+    width: (@unit * 7) - @gutter;
+    margin-left: (@gutter / 2) + (2 * @unit);
+    margin-right: (@gutter / 2);
+    .clearfix();
+
+    div.row {
+        overflow: hidden;
+    }
+
+    div.col-bisect {
+        display: block;
+        float: left;
+        width: 50%;
+
+        @media (max-width: 640px), (max-device-width: 640px) {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    div.col-trisect {
+        display: block;
+        float: left;
+        width: 33.3%;
+
+        @media (max-width: 640px), (max-device-width: 640px) {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    div.col-major {
+        display: block;
+        float: left;
+        width: 65%;
+
+        @media (max-width: 640px), (max-device-width: 640px) {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    div.col-minor {
+        display: block;
+        overflow: hidden;
+        padding-left: 1em;
+    }
+
+
+    @media (max-width: 1000px) {
+        width: (@unit * 9) - @gutter;
+        margin-left: (@gutter / 2) + (1 * @unit);
+        margin-right: (@gutter / 2);
+    }
+
+    @media (max-width: 700px), (max-device-width: 700px),
+            (max-device-width: 900px)
+                and (-webkit-min-device-pixel-ratio: 1.25),
+            (max-device-width: 900px)
+                and (min-resolution: 120dpi) {
+        width: (@unit * 11) - @gutter;
+        margin-left: (@gutter / 2) + (0 * @unit);
+        margin-right: (@gutter / 2);
+    }
+}
+
+// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+    *zoom:1;
+
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
