@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+{% load gravatar %}
+
+<!-- BEGIN header -->
+<div id="header">
+  <div class="row">
+    <div class="logo">
+      {% block header-logo %}
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'projects_dashboard' %}"><img src="{% static 'images/header-logo.png' %}" /></a>
+        {% else %}
+          <a href="{% url 'core.views.homepage' %}"><img src="{% static 'images/header-logo.png' %}" /></a>
+        {% endif %}
+      {% endblock %}
+    </div>
+
+    <div class="nav">
+      {% block header-nav %}
+        {% if request.user.is_authenticated %}
+          {% block header-dropdown %}
+            <div class="menu menu-user" id="subnav-user-menu">
+              <div class="menu-button">
+                <a href="{% url 'projects_dashboard' %}">
+                  {% gravatar request.user.email 24 %}
+                  {{ request.user }}</a>
+                <button class="menu-drop"></button>
+              </div>
+              <div class="menu-dropdown">
+                <ul>
+                  <ul>
+                    <li><a href="{% url 'projects_dashboard' %}">{% trans "Projects" %}</a></li>
+                    <li><a href="{% url 'projects_import' %}">{% trans "Add Project" %}</a></li>
+                    <li><a href="{% url 'profiles_profile_edit' %}">{% trans "Profile" %}</a></li>
+                    <li><a href="{% url 'bookmark_list' %}">{% trans "Bookmarks" %}</a></li>
+                  </ul>
+                  <ul>
+                    <li><a href="{% url 'account_logout' %}">{% trans "Log Out" %}</a></li>
+                    <li><a href="{% url 'donate' %}">{% trans "Donate" %}</a></li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          {% endblock %}
+        {% else %}
+          {% block header-links %}
+            <ul>
+              <li class="nav-link nav-signup"><a href="{% url "account_signup" %}" class="link signup">{% trans "Sign&nbsp;up" %}</a></li>
+              <li class="nav-link nav-login"><a href="{% url "account_login" %}" class="link login">{% trans "Log&nbsp;in" %}</a></li>
+            </ul>
+          {% endblock %}
+        {% endif %}
+      {% endblock %}
+    </div>
+  </div>
+</div>
+<!-- END header -->

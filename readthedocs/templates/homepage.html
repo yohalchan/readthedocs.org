@@ -11,11 +11,7 @@
 {% block nav-browse %}class="active"{% endblock %}
 
 {% block header-wrapper %}
-  {% if request.user.is_authenticated %}
-    {% include "core/header.html" %}
-  {% else %}
-    {% include "core/home-header.html" %}
-  {% endif %}
+  {% include "core/header.html" %}
 {% endblock %}
 
 {% block extra_scripts %}
