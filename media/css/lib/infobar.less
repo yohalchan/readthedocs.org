@@ -1,0 +1,23 @@
+/* Infobar for top of the page information. Unused at the moment */
+
+div.info-bar > .wrapper {
+    .fluid_block();
+    width: initial !important;
+    margin: 0em;
+    padding: .65em;
+    text-align: center;
+
+    p {
+        margin: 0em;
+    }
+}
+
+div.info-bar {
+    .themed_green();
+    border-bottom: 2px solid darken(@col-green, 10%);
+}
+
+div.info-bar.important {
+    .themed_primary();
+    border-bottom: 2px solid darken(@col-pri-accent, 10%);
+}

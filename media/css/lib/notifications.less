@@ -1,0 +1,19 @@
+// Notifications
+
+ul.notifications {
+    > li.notification {
+        padding: .5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        background: lighten(@col-pri-accent, 40%);
+        color: @col-dark;
+        border-top: 3px solid lighten(@col-pri-accent, 25%);
+    }
+
+    > li.notification-30,
+    > li.notification-40 {
+        background: lighten(orangered, 40%);
+        color: @col-dark;
+        border-top: 3px solid lighten(orangered, 25%);
+    }
+}

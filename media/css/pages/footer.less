@@ -1,0 +1,52 @@
+// Footer styles
+
+#footer {
+    .fluid_grid();
+}
+
+#footer {
+    .themed_light();
+    padding: 2em 0em;
+    line-height: 1.5em;
+    color: lighten(@col-bg, 20%);
+    background-color: #fff;
+
+    .row {
+        padding: 1em 0em .65em 0em;
+        text-align: center;
+    }
+
+    ul {
+        display: inline;
+        margin: 0em;
+        list-style: none;
+
+        li {
+            display: inline;
+            margin: 0px;
+            padding: 0em 0em 0em 1em;
+            list-style: none;
+        }
+    }
+
+    form {
+        font-size: .8em;
+        .flat_form(darken(@col-light, 20%));
+
+        select {
+            color: @col-dark;
+            width: 10em;
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+
+        input[type="submit"],
+        button {
+            .flat_button(darken(@col-light, 30%), @col-light);
+            font-size: 1em;
+            line-height: 1.5em;
+        }
+    }
+}
+
+

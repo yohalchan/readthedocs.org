@@ -1,0 +1,66 @@
+// Colors and color mixins
+
+// Palette
+@col-light: #fcfcfc;
+@col-mid: #f5f2e9;
+@col-dark: #343131;
+@col-fg: @col-light;
+@col-bg: @col-dark;
+@col-pri-accent: #2980b9;
+@col-sec-accent: #f05330;
+@col-green: #a9e6ae;
+
+// Block of color mixins
+.themed (@background, @foreground, @link) {
+    font-family: Puritan;
+    font-size: 1em;
+    background: @background;
+    color: @foreground;
+
+    a {
+        text-decoration: none;
+
+        &:link, &:visited { color: @link; }
+        &:hover, &:active { color: mix(@background, @link, 40%); }
+    }
+}
+.themed_blue {
+    .themed(@col-pri-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_primary {
+    .themed(@col-pri-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_green {
+    @col-green-dark: darken(@col-green, 60%);
+    .themed(@col-green, @col-green-dark, @col-green-dark);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_secondary {
+    .themed(@col-sec-accent, @col-fg, @col-fg);
+    a {
+        text-decoration: underline;
+    }
+}
+.themed_lightest {
+    .themed(#fff, @col-dark, @col-pri-accent);
+}
+.themed_light {
+    .themed(@col-light, @col-dark, @col-pri-accent);
+}
+.themed_dark {
+    .themed(@col-mid, @col-dark, lighten(@col-pri-accent, 10%));
+}
+.themed_darker {
+    .themed(darken(@col-light, 5%), @col-dark, lighten(@col-pri-accent, 10%));
+}
+.themed_darkest {
+    .themed(darken(@col-light, 15%), @col-dark, lighten(@col-pri-accent, 10%));
+}

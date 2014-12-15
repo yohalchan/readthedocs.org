@@ -1,0 +1,82 @@
+// Navigable block for pages with left navigation bar
+
+.navigable {
+    .clearfix();
+    position: relative;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    > div {
+        display: block;
+        overflow: hidden;
+        .module .module-wrapper {
+            width: 100%;
+            margin: 0em;
+        }
+    }
+
+    > ul {
+        width: 12em;
+        margin-right: 1em;
+        float: left;
+
+        li {
+            .themed_light();
+            border-bottom: 1px solid darken(@col-light, 10%);
+            position: relative;
+            word-break: break-all;
+            line-height: 1.5em;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &.active {
+                .themed_blue();
+                a:visited, a:active { color: @col-light !important; }
+            }
+
+            &.active:after {
+                content: "•";
+                position: absolute;
+                right: .5em;
+                top: .25em;
+            }
+
+            a {
+                display: block;
+                padding: .3em;
+
+                &:hover {
+                    background: lighten(@col-pri-accent, 45%);
+                }
+            }
+        }
+
+        .edit {
+            position: absolute;
+            top: .2em;
+            left: -1.5em;
+            opacity: 0.25;
+            text-transform: uppercase;
+            text-decoration: underline;
+
+            transition: opacity 0.2s ease-in-out;
+            -webkit-transition: opacity 0.2s ease-in-out;
+            -moz-transition: opacity 0.2s ease-in-out;
+            -ms-transition: opacity 0.2s ease-in-out;
+            -o-transition: opacity 0.2s ease-in-out;
+        }
+
+        li:hover .edit {
+            opacity: 1;
+        }
+
+        h3.editable {
+            padding: .2em 0em;
+        }
+    }
+
+    .profile_image img { border-radius: 5px; }
+}
+

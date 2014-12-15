@@ -1,3 +1,5 @@
+/* Grid mixins */
+
 body {
     width: 100%;
     .clearfix();
@@ -41,31 +43,41 @@ body {
 .fluid_grid () {
     .grid(11);
 
-    .row {
+    div.row {
         .block(9, 1);
         overflow: hidden;
 
-        .col.fill { .column(9, 0, 9); }
-        .col.bisect { .column(4.5, 0, 9); }
-        .col.trisect { .column(3, 0, 9); }
-        .col.major { .column(6, 0, 9); }
-        .col.minor { .column(3, 0, 9); }
+        div.col.fill,
+        div.col.col-fill { .column(9, 0, 9); }
+        div.col.bisect,
+        div.col.col-bisect { .column(4.5, 0, 9); }
+        div.col.trisect,
+        div.col.col-trisect { .column(3, 0, 9); }
+        div.col.major,
+        div.col.col-major { .column(6, 0, 9); }
+        div.col.minor,
+        div.col.col-minor { .column(3, 0, 9); }
     }
 
     @media (max-width: 1000px) {
         .grid(9);
-        .row { .block(9); }
+        div.row { .block(9); }
     }
 
     @media (max-width: 640px), (max-device-width: 640px) {
         .grid(1);
-        .row {
+        div.row {
             .block(1);
-            .col.fill { .column(1); }
-            .col.bisect { .column(1); }
-            .col.trisect { .column(1); }
-            .col.major { .column(1); }
-            .col.minor { .column(1); }
+            div.col.fill,
+            div.col.col-fill { .column(1); }
+            div.col.bisect,
+            div.col.col-bisect { .column(1); }
+            div.col.trisect,
+            div.col.col-trisect { .column(1); }
+            div.col.major,
+            div.col.col-major { .column(1); }
+            div.col.minor,
+            div.col.col-minor { .column(1); }
         }
     }
 }

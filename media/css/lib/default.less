@@ -1,0 +1,102 @@
+// Default styling  for generic elements. Don't target specific page styles here
+
+body {
+    font-size: 16px;
+    font-family: Puritan;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1em auto 1em .3em;
+    font-family: 'Bree Serif';
+}
+
+h1 { font-size: 1.6em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.1em; }
+
+// General style rules
+a {
+    text-decoration: none;
+
+    &:link { color: @col-pri-accent; }
+    &:visited { color: darken(@col-pri-accent, 10%); }
+    &:hover, &:active { color: lighten(@col-pri-accent, 5%); }
+}
+
+input[type='text'], input[type='email'] {
+    padding: .5em;
+    border: none;
+    margin-top: (.333333em / 2);
+    background: darken(@col-pri-accent, 10%);
+    color: @col-fg;
+    font-family: Puritan, sans-serif;
+
+    &.sec {
+        width: 15em;
+        margin: 0em 1em;
+        background: darken(@col-sec-accent, 5%);
+        font-size: 1.5em;
+    }
+}
+
+img.gravatar {
+    background: rgba(240, 240, 240, 50);
+}
+
+form {
+    .flat_form(lighten(@col-light, 20%), @col-dark);
+}
+
+pre, code {
+    background: darken(@col-light, 2%);
+    border: 1px solid darken(@col-light, 10%);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1em;
+    margin: 1em 0em;
+    white-space: pre-line;
+    border-radius: .2em;
+
+    font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', monospace;
+}
+
+pre {
+    font-size: .8em;
+}
+
+code {
+    padding: .2em;
+}
+
+p {
+    margin: 1em 0em;
+    line-height: 1.5em;
+
+    b {
+        padding: .2em;
+        background: lighten(@col-pri-accent, 45%);
+        color: darken(@col-dark, 20%);
+        font-weight: normal;
+        text-decoration: none;
+    }
+
+    &.info {
+        .themed_dark();
+        padding: 1em;
+
+        border-radius: .3em;
+        -moz-border-radius: .3em;
+        -webkit-border-radius: .3em;
+
+        b {
+            padding: .2em;
+            background: lighten(@col-pri-accent, 45%);
+            color: darken(@col-dark, 20%);
+            font-weight: normal;
+            text-decoration: none;
+        }
+    }
+}
