@@ -29,7 +29,7 @@
           <div class="module-wrapper">
 
             <div class="module-header">
-              <div style="float:right;">
+              <div class="right">
                 <form method="post" action="{% url "generic_build" project.pk %}">
                   <ul class="build_a_version">
                     <li style="display: inline-block">
@@ -44,8 +44,8 @@
                     </li>
                   </form>
                 </div>
+                <h1>{% trans "Recent Builds" %}</h1>
               </div>
-              <h1>{% trans "Recent Builds" %}</h1>
             </div>
 
             <div class="module-list">
