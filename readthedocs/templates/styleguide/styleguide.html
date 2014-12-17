@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load pykss %}
+{% load static %}
+
+{% block content %}
+  {% renderstyleguide styleguide '1.1' %}
+  {% renderstyleguide styleguide '1.2' using 'styleguide/styleguide_columns.html' %}
+  {% renderstyleguide styleguide '1.5' %}
+  {% renderstyleguide styleguide '9.1' %}
+  {% renderstyleguide styleguide '10.1' using 'styleguide/styleguide_columns.html' %}
+{% endblock %}
+
+
+{% block extra_links %}
+  <style>
+ul.styleguide-modifier {
+    margin-left: 1em;
+    line-height: 1.5em;
+}
+
+.styleguide-modifier li {
+    list-style: inside;
+}
+
+.styleguide-element {
+    margin-top: .5em;
+    padding-top: .5em;
+    margin-bottom: 2em;
+    border-top: 1px solid #ddd;
+}
+
+.styleguide-element .styleguide-modifier-name {
+    display: block;
+    margin-bottom: .5em;
+    color: #999;
+    text-align: right;
+}
+
+.styleguide-code {
+    font-size: 1em;
+    white-space: pre;
+}
+  </style>
+{% endblock %}
+
+
+{% block extra_scripts %}
+  <script src="{% static "pykss/js/kss.js" %}"></script>
+{% endblock %}

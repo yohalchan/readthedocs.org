@@ -126,6 +126,15 @@ urlpatterns = patterns(
 )
 
 if settings.DEBUG:
+    try:
+        from pykss.contrib.django.views import StyleguideView
+        urlpatterns += patterns(
+            '',
+            url('styleguide/$',
+                StyleguideView.as_view(template_name='styleguide/styleguide.html')),
+        )
+    except ImportError:
+        pass
     urlpatterns += patterns(
         '',  # base view, flake8 complains if it is on the previous line.
         url('style-catalog/$',

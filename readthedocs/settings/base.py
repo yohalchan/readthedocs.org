@@ -280,6 +280,15 @@ except NameError:
         'compressor.finders.CompressorFinder'
     )
 
+# KSS
+PYKSS_DIRS = [os.path.join(MEDIA_ROOT, 'css')]
+if DEBUG:
+    try:
+        import pykss
+        INSTALLED_APPS.append('pykss.contrib.django')
+    except ImportError:
+        pass
+
 # RTD Settings
 REPO_LOCK_SECONDS = 30
 ALLOW_PRIVATE_REPOS = False

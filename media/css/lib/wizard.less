@@ -1,4 +1,23 @@
-/* Wizard forms */
+/*
+Wizard form styling, which includes the area for the form and area at the
+bottomof the wizard page for form actions. The primary action should be the
+right-most button.
+
+Example:
+<div class="wizard">
+  <form action="">
+    <label for="test">Test</label>
+    <input type="text" id="test" name="test" />
+
+    <div class="actions wizard-actions">
+      <input type="submit" value="Next" class="action action-primary" />
+      <input type="submit" value="Previous" class="action action-secondary" />
+    </div>
+  </form>
+</div>
+
+Styleguide 9.1
+*/
 
 div.wizard {
     div.actions.wizard-actions {
