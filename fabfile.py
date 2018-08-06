@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
+
 from fabric.api import lcd, local
-from fabric.decorators import runs_once
 
 import os
 
@@ -32,8 +33,3 @@ def i18n_docs():
         # Push new ones
         local('make gettext')
         local('tx push -s')
-
-
-@runs_once
-def spider():
-    local('patu.py -d1 readthedocs.org')
