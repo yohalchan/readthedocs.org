@@ -199,4 +199,7 @@ class TestPublicDocs(BaseDocServing):
         middleware.process_request(request)
         response = server_error_404_subdomain(request)
         self.assertEqual(response.status_code, 404)
-        self.assertTrue(response['X-Accel-Redirect'].endswith('/public/en/latest/404.html'))
+        self.assertTrue(
+            response['X-Accel-Redirect'].endswith('/public/en/latest/404.html'),
+            response['X-Accel-Redirect'],
+        )
