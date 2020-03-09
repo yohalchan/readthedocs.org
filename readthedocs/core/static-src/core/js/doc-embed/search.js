@@ -45,17 +45,21 @@ function attach_elastic_search_query(data) {
     var version = data.version;
     var language = data.language || 'en';
 
-    var api_host = window.location.hostname;
+    var real_api_host = window.location.hostname;
+    var pathname = '/api/v2/docsearch/';
     if ("proxied_api_host" in data) {
         real_api_host = data.proxied_api_host;
+        real_pathname = pathname;
+    } else {
+        real_pathname = '_/' + pathname;
     }
 
     var query_override = function (query) {
         var search_def = $.Deferred();
         var search_url = document.createElement('a');
 
-        search_url.href = api_host;
-        search_url.pathname = '/api/v2/docsearch/';
+        search_url.href = real_api_host;
+        search_url.pathname = real_pathname;
         search_url.search = '?q=' + $.urlencode(query) + '&project=' + project +
                             '&version=' + version + '&language=' + language;
 

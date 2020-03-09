@@ -65,14 +65,20 @@ function init() {
     // Check for new logic around proxying requests.
     // ``proxied_api_host`` won't exist on existing built docs,
     // so default to ``api_host`` in those cases
+
     var real_api_host = window.location.hostname;
+    var pathname = '/api/v2/docsearch/';
     if ("proxied_api_host" in rtd) {
         real_api_host = rtd.proxied_api_host;
+        real_pathname = pathname;
+    } else {
+        real_pathname = '_/' + pathname;
     }
+
 
     // Get footer HTML from API and inject it into the page.
     $.ajax({
-        url: real_api_host + "/api/v2/footer_html/",
+        url: real_api_host + pathname,
         crossDomain: true,
         xhrFields: {
             withCredentials: true,
