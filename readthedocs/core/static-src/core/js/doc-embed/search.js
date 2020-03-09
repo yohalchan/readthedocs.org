@@ -44,7 +44,11 @@ function attach_elastic_search_query(data) {
     var project = data.project;
     var version = data.version;
     var language = data.language || 'en';
-    var api_host = data.api_host;
+
+    var api_host = window.location.hostname;
+    if ("proxied_api_host" in data) {
+        real_api_host = data.proxied_api_host;
+    }
 
     var query_override = function (query) {
         var search_def = $.Deferred();
