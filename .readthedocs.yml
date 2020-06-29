@@ -10,3 +10,4 @@ python:
 search:
   ranking:
     api/v2.html: 9
+    api/v1.html: -1
