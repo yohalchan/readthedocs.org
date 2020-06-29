@@ -9,4 +9,4 @@ python:
 
 search:
   ranking:
-    - api/v2.html: 2
+    api/v2.html: 2
