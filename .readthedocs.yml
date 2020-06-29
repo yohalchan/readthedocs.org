@@ -6,3 +6,7 @@ python:
   install:
     - requirements: requirements/pip.txt
     - requirements: requirements/docs.txt
+
+search:
+  ranking:
+    - api/v2.html: 2
