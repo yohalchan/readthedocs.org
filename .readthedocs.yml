@@ -9,5 +9,5 @@ python:
 
 search:
   ranking:
-    api/v1.html: -1
-    api/v2.html: 5
+    api/v1.html: -2
+    api/v2.html: 4
