@@ -10,6 +10,6 @@ python:
 search:
   ranking:
     # was able to move it down with -5
-    api/v1.html: -2
+    api/v1.html: -1
     api/v2.html: 0
     api/v3.html: 0
